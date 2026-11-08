@@ -1,0 +1,29 @@
+{
+  "split_seed": 31415,
+  "data_hash": "47af8b02cfcfb6cdf3dbbd1969ad7f1b70f4413f6f80f437b020ee4e5bc8304a",
+  "labels_hash": "f5cfe00b0f00968c0cc5ff3b1d2de51b10e33efa277c2986f4e0fa63e58c9f4f",
+  "pools": {
+    "train": {
+      "n": 10000,
+      "id_hash": "11f4854c4d0d61eac5a12ff033e36202a4b9f25d61155fd801f239890c59e3fd"
+    },
+    "attr": {
+      "n": 2000,
+      "id_hash": "6850ca1de39a37a119e765e3377be8fd68b8e0850a946866eeb008bfd46e432a"
+    },
+    "tune": {
+      "n": 2000,
+      "id_hash": "3c81233da9245b386c4e11e769be7ff0269178296341766810e9ef04caca95b9"
+    },
+    "effect": {
+      "n": 2000,
+      "id_hash": "4bff452bc8fafb9adfc6993318fdc5d96a477a3a626cf04a63edcb898e1f2d59"
+    },
+    "generator": {
+      "n": 10000,
+      "id_hash": "d637f668f2a8e62ac56c739ec774269d0988d19c7fa90ef3eaa8937899b2420e"
+    }
+  },
+  "test_count": 10000,
+  "test_data_hash": "f9b1e2130bab680db56eb06d886f7f1ad0f1183907ceff4659d1735c890f5b04"
+}

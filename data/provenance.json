@@ -1,0 +1,11 @@
+{
+  "source_combined_sha256": "3a78427d0bb1ff3bf8230bf230ee3c46183f10d70b1e8df327774240a52d950e",
+  "retained_methods": [
+    "random",
+    "loss",
+    "if_original",
+    "tracin_self"
+  ],
+  "rows": 240,
+  "description": "Selected final methods; original experiment records remain archived outside this repository."
+}

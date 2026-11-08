@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "cases": 30,
+  "methods": 4,
+  "cleaning_results": 240,
+  "checks": [
+    "complete unique matrix",
+    "finite metrics",
+    "accuracy delta",
+    "budget and hit consistency",
+    "detection consistency"
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "protocol_version": "resnet-main-v2.0",
+  "split_seed": 31415,
+  "train_size": 10000,
+  "attr_size": 2000,
+  "tune_size": 2000,
+  "effect_size": 2000,
+  "generator_size": 10000,
+  "seeds": [
+    200,
+    201,
+    202,
+    203,
+    204
+  ],
+  "noise_types": [
+    "symmetric",
+    "pairflip",
+    "instance"
+  ],
+  "rates": [
+    0.2,
+    0.4
+  ],
+  "budget": 0.1,
+  "batch_size": 128,
+  "epochs": 100,
+  "lr": 0.1,
+  "warmup_epochs": 5,
+  "weight_decay": 0.0005,
+  "momentum": 0.9,
+  "damping_sequence": [
+    0.01,
+    0.1,
+    1.0
+  ],
+  "cg_rtol": 1e-06,
+  "cg_maxiter": 500,
+  "feature_batch": 256,
+  "hvp_batch": 1000,
+  "threads": 4,
+  "checkpoint_steps": 395,
+  "calibration_seeds": [
+    100,
+    101
+  ],
+  "calibration_plateau_tolerance": 0.005,
+  "calibration_min_accuracy": 0.7,
+  "calibration_max_seed_gap": 0.05
+}
