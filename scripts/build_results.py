@@ -8,7 +8,7 @@ matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 ROOT=Path(__file__).resolve().parents[1]
 METHODS=['random','loss','if_original','tracin_self']
-LABELS=['Random','Loss','Original IF','TracIn']
+LABELS=['Random','Loss','IF','TracIn']
 CONDITIONS=[('symmetric',.2),('symmetric',.4),('pairflip',.2),('pairflip',.4),('instance',.2),('instance',.4)]
 NAMES={'symmetric':'随机错标','pairflip':'类别依赖错标','instance':'实例依赖错标'}
 df=pd.read_csv(ROOT/'data/results.csv')
@@ -31,7 +31,7 @@ summary.to_csv(ROOT/'data/summary.csv')
 (ROOT/'data/validation.json').write_text(json.dumps({'passed':True,'cases':30,'methods':4,'cleaning_results':240,'checks':['complete unique matrix','finite metrics','accuracy delta','budget and hit consistency','detection consistency']},indent=2)+'\n')
 
 def table(metric,action,scale=1):
- lines=['| 噪声 | 比例 | Random | Loss | 原始 IF | TracIn |','|---|---:|---:|---:|---:|---:|']
+ lines=['| 噪声 | 比例 | Random | Loss | IF | TracIn |','|---|---:|---:|---:|---:|---:|']
  for n,r in CONDITIONS:
   vals=[]
   for m in METHODS:
@@ -50,12 +50,12 @@ for metric,action,file,ylabel,scale in [('AP','correct','detection_ap','Average 
  fig.savefig(ROOT/f'figures/{file}.png',dpi=180);plt.close(fig)
 readme='''# Training Data Influence for Detecting Mislabeled Samples
 
-CIFAR-10 / ResNet-18 课程项目最终结果仓库。比较 **Random、Training Loss、原始最后一层 Influence Functions、TracInCP 最后一层自影响** 四种方法。
+CIFAR-10 / ResNet-18 课程项目最终结果仓库。比较 **Random、Training Loss、最后一层 Influence Functions、TracInCP 最后一层自影响** 四种方法。
 
 ## 主要结论
 
-- TracIn 在六个设置中的五个取得这四种方法里最高的平均检测 AP；40% 类别依赖错标下原始 IF 最高。
-- 在固定检查1,000张并恢复真实标签后，TracIn同样在五个设置取得最高平均测试准确率，40%类别依赖错标下原始IF最好。
+- TracIn 在六个设置中的五个取得这四种方法里最高的平均检测 AP；40% 类别依赖错标下IF 最高。
+- 在固定检查1,000张并恢复真实标签后，TracIn同样在五个设置取得最高平均测试准确率，40%类别依赖错标下IF最好。
 - 方法优势依赖噪声结构；检测 AP 高不保证清理后准确率一定更高。报告均值和跨种子标准差，不将小幅均值差自动解释为统计显著。
 - IF使用额外干净验证标签，TracIn使用训练历史，信息预算不同；结果不能仅归因于算法公式。
 
@@ -110,7 +110,7 @@ CIFAR-10 / ResNet-18 课程项目最终结果仓库。比较 **Random、Training
 |---|---|---|
 | Random | 随机排序 | 未独立计时，计算很少 |
 | Loss | 最终模型的一次前向评价 | 未独立计时 |
-| 原始IF | 特征、干净验证梯度、头部CG | 原实验共享特征33.47秒；共享评分批次11.32秒，不能当作该方法独立耗时 |
+| IF | 特征、干净验证梯度、头部CG | 原实验共享特征33.47秒；共享评分批次11.32秒，不能当作该方法独立耗时 |
 | TracIn | 9个历史checkpoint的特征和梯度评分 | 为补齐历史轨迹补训3.13小时；评分未独立计时 |
 
 IF需要额外2,000个干净归因标签。TracIn若在原训练中预先保存checkpoint，可避免本次轨迹补训，但仍有评分与存储成本。每种方法60次清理重训约6–7小时，这主要是比较方法效果的实验成本。实际硬件为单个H100 MIG 3g.40gb，不是8卡运行。

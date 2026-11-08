@@ -16,7 +16,7 @@ CIFAR-10官方训练集固定分层划分：D_train10000、V_attr2000、V_tune20
 
 - Random：固定种子的随机排序。
 - Loss：最终模型对含噪标签的交叉熵。与当前标签置信度的反向排序等价。
-- 原始IF：S_i=−g_iᵀv，v=(H+λI)⁻¹g_val。H为冻结特征下头部的平均训练交叉熵Hessian加L2，λ默认0.01；CG float64、rtol1e−6、最多500迭代，数值失败才回退0.1/1。正高分表示增权预计损害干净验证表现。不是全网络精确IF。
+- IF：S_i=−g_iᵀv，v=(H+λI)⁻¹g_val。H为冻结特征下头部的平均训练交叉熵Hessian加L2，λ默认0.01；CG float64、rtol1e−6、最多500迭代，数值失败才回退0.1/1。正高分表示增权预计损害干净验证表现。不是全网络精确IF。
 - TracInCP-self-last-layer：S_i=Σ_k η_k||∇_head loss_i(w_k)||²，checkpoint为epoch10,20,…,90，η为对应实际训练步学习率；梯度含bias、不含L2梯度。每个checkpoint使用自身encoder特征。该方法不使用V_attr。原训练没有保留全部历史权重，因此按相同协议重放；30组最终参数与原模型的最大差均为0。
 
 ## 指标与审计
